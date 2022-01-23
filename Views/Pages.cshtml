@@ -1,0 +1,40 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Pages>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+ <section class="top-section">
+        <article class="top-content">
+          <h1>@Model.Value("title")</h1>
+          <p>
+          @Model.Value("description")
+          </p>
+        </article>
+      </section>
+	   <section class="general-section">
+        <div class="offices">
+@{
+	var office = Umbraco.Content(Guid.Parse("da5dd6b8-7508-4e30-9d8a-3d0337a53730"))
+    .ChildrenOfType("office")
+    .Where(x => x.IsVisible())
+    .OrderBy(x => x.Name);
+}
+
+	@foreach (var item in office)
+	{
+		    <div class="office-card">
+      <h3>@item.Value("city")</h3>
+      <h3>
+        <small>@item.Value("type")</small>
+      </h3>
+      <p>@item.Value("address")</p>
+      <p>@item.Value("phoneNumber")</p>
+      <button class="button-link">Read more</button>
+    </div>
+	}
+
+
+</div>
+      </section>

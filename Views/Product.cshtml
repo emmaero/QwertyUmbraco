@@ -1,0 +1,16 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Product>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+    <div className="product-card">
+      @* <img src={require("../assets/images/products/" + imageUrl)} alt={name} /> *@
+
+      <div className="product-info">
+        <h3>@Model.Value("productName")</h3>
+        <p>@Model.Value("description")</p>
+        <button className="button-link">Read more</button>
+      </div>
+    </div>

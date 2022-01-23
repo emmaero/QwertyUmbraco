@@ -1,0 +1,19 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SpliteSection>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = null;
+}
+<section className="general-section">
+        <div className="container two-column">
+          <div className="container-item">
+            <h2>@Model.Value("title")</h2>
+            <p>
+             @Model.Value("description")
+            </p>
+          </div>
+          <div className="container-item">
+            <img src='@Model.Value("imageUrl")' alt="qwerty" />
+          </div>
+        </div>
+      </section>

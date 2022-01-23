@@ -1,0 +1,15 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Office>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+    <section>
+      <h3>@Model.Value("city")</h3>
+      <h3>
+        <small>@Model.Value("type")</small>
+      </h3>
+      <p>@Model.Value("address")</p>
+      <p>@Model.Value("phoneNumber")</p>
+    
+    </section>

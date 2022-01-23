@@ -1,0 +1,21 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<main>
+      <div className="hero">
+        <div className="hero-content">
+          <div className="intro-box">
+            <h1>@Model.Header</h1>
+            <p>@Model.Intro</p>
+            <button className="button-secondary">
+              @Model.ProductButton
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </main>

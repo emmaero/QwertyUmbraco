@@ -1,0 +1,39 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.NewsPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+   <section class="top-section">
+        <article class="top-content">
+          <h1>@Model.Value("header")</h1>
+       
+        </article>
+      </section>
+      <section class="general-section news-section">
+        <div class="news">
+@{
+	var selection = Umbraco.Content(Guid.Parse("df165a35-a7e4-4943-9e5a-3e029c45b7e1"))
+    .ChildrenOfType("newsItem")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+
+	@foreach (var item in selection)
+	{
+	<article class="news-card">
+      <div class="date-info">
+        @* <p>{convertToMonthDayText(date)}</p>
+        <p>{convertToYearText(date)}</p> *@
+      </div>
+      <div class="news-info">
+        <h3>@item.Value("title")</h3>
+        <p>@item.Value("description")</p>
+       <a href="@item.Url()" class="button-link">Read more</a>
+      </div>
+    </article>
+	}
+
+
+</div>
+      </section>

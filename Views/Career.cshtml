@@ -1,0 +1,42 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Career>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+ <section class="top-section">
+        <article class="top-content">
+          <h1>@Model.Value("title")</h1>
+          <p>
+          @Model.Value("description")
+          </p>
+        </article>
+      </section>
+	   <section class="general-section">
+ 
+ <div class="career">
+     
+@{
+	var selection = Umbraco.Content(Guid.Parse("fe7d7562-6beb-49bc-9c13-db45a4a11b96"))
+    .ChildrenOfType("job")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+
+
+	@foreach (var item in selection)
+	{
+	
+		 <article class="job-card">
+      <h3>@item.Value("position")</h3>
+      <h3>
+        <small>@item.CreateDate</small>
+      </h3>
+      <p>@item.Value("bodyText")</p>
+      <button class="button-main">@item.Value("buttonText")</button>
+    </article>
+	}
+
+
+</div>
+      </section>

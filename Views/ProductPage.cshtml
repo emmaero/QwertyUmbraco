@@ -1,0 +1,42 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ProductPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+  <main class="container py-4">
+	<div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">@Model.Value("title")</h1>
+        <p class="col-md-8 fs-4">@Model.Value("description")</p>
+      </div>
+    </div>
+    
+      <section class="general-section">
+        <div class="products">
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("57840b1d-5bc4-4c78-8518-b080f48568ec"))
+    .ChildrenOfType("product")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+
+	@foreach (var item in selection)
+	{
+	<article class="product-card">
+		  @if(item.HasValue("imageUrl"))
+                    {
+                        var image = item.Value<IPublishedContent>("imageUrl");
+                        <img src="@image.Url()" alt="qwerty" />
+                    }
+      	<div class="product-info">
+        	<h3>@item.Name()</h3>
+			  <div>@Html.Truncate(item.Value("description").ToString(), 50, true)
+      	</div>
+				  <a href="@item.Url()" class="button-link">Read More..</a></div>
+	</article>
+	}
+</div>
+      </section>
+    </main>
