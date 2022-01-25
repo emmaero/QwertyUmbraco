@@ -4,7 +4,7 @@
 @{
 	Layout = "Master.cshtml";
 }
-   <section class="top-section">
+   <section class="top-section bg-light">
         <article class="top-content">
           <h1>@Model.Value("header")</h1>
        
@@ -29,7 +29,7 @@
       <div class="news-info">
         <h3>@item.Value("title")</h3>
         <p>@item.Value("description")</p>
-       <a href="@item.Url()" class="button-link">Read more</a>
+       <a href="@item.Url()" class="button-link text-main-color">Read more</a>
       </div>
     </article>
 	}

@@ -6,16 +6,43 @@
 }
 
 <main>
-      <div className="hero">
-        <div className="hero-content">
-          <div className="intro-box">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="intro-box">
             <h1>@Model.Header</h1>
             <p>@Model.Intro</p>
-            <button className="button-secondary">
+            <button class="button-secondary">
               @Model.ProductButton
             </button>
           </div>
         </div>
       </div>
-      
+ 
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("e527ace7-9b5a-4e98-aa70-7a10cd9976da"))
+    .ChildrenOfType("spliteSection")
+    .Where(x => x.IsVisible());
+}
+
+
+	@foreach (var item in selection)
+	{
+		<section class="general-section">
+        <div class="container two-column">
+          <div class="container-item">
+            <h2>@item.Value("title")</h2>
+            <p>
+            @item.Value("bodyText")
+            </p>
+          </div>
+          <div class="container-item">
+            <img src=@item.Url() alt="qwerty" />
+          </div>
+        </div>
+      </section>
+	}
+
+
+
     </main>
